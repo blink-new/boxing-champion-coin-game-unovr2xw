@@ -160,6 +160,170 @@ const UNLIMITED_COINS_PASS = {
   ]
 }
 
+// All New Passes
+const GAME_PASSES = [
+  {
+    id: 'speed_demon',
+    name: 'Speed Demon Pass',
+    price: 50000,
+    duration: 7, // days
+    icon: '⚡',
+    color: 'bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600',
+    description: 'Lightning-fast combat and instant actions',
+    benefits: [
+      '5x faster attack speed',
+      'Instant health regeneration',
+      'Skip fight animations',
+      'Lightning bolt effects',
+      'Speed boost badge'
+    ]
+  },
+  {
+    id: 'berserker_rage',
+    name: 'Berserker Rage Pass',
+    price: 75000,
+    duration: 10, // days
+    icon: '🔥',
+    color: 'bg-gradient-to-br from-red-600 via-orange-600 to-yellow-600',
+    description: 'Unleash your inner warrior with devastating power',
+    benefits: [
+      '10x damage multiplier',
+      'Rage mode activation',
+      'Fire damage effects',
+      'Berserker transformation',
+      'Flame aura visuals'
+    ]
+  },
+  {
+    id: 'lucky_charm',
+    name: 'Lucky Charm Pass',
+    price: 100000,
+    duration: 14, // days
+    icon: '🍀',
+    color: 'bg-gradient-to-br from-green-500 via-emerald-600 to-teal-600',
+    description: 'Fortune favors the bold with incredible luck',
+    benefits: [
+      '50% chance of double rewards',
+      'Rare item drop bonuses',
+      'Lucky jackpot events',
+      'Clover particle effects',
+      'Fortune teller predictions'
+    ]
+  },
+  {
+    id: 'shadow_assassin',
+    name: 'Shadow Assassin Pass',
+    price: 150000,
+    duration: 21, // days
+    icon: '🥷',
+    color: 'bg-gradient-to-br from-purple-900 via-black to-gray-900',
+    description: 'Master the arts of stealth and precision',
+    benefits: [
+      'Stealth mode activation',
+      'Critical hit guarantee',
+      'Shadow clone attacks',
+      'Invisibility effects',
+      'Ninja smoke animations'
+    ]
+  },
+  {
+    id: 'cosmic_warrior',
+    name: 'Cosmic Warrior Pass',
+    price: 250000,
+    duration: 30, // days
+    icon: '🌌',
+    color: 'bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600',
+    description: 'Harness the power of the universe itself',
+    benefits: [
+      'Cosmic energy blasts',
+      'Gravity manipulation',
+      'Starfield combat arena',
+      'Galactic particle effects',
+      'Universe-themed UI'
+    ]
+  },
+  {
+    id: 'time_master',
+    name: 'Time Master Pass',
+    price: 500000,
+    duration: 45, // days
+    icon: '⏰',
+    color: 'bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500',
+    description: 'Control time itself and bend reality',
+    benefits: [
+      'Time manipulation abilities',
+      'Rewind failed fights',
+      'Slow motion combat',
+      'Time portal effects',
+      'Chronometer UI elements'
+    ]
+  },
+  {
+    id: 'dragon_emperor',
+    name: 'Dragon Emperor Pass',
+    price: 1000000,
+    duration: 60, // days
+    icon: '🐉',
+    color: 'bg-gradient-to-br from-red-600 via-orange-500 to-yellow-500',
+    description: 'Rule with the might of ancient dragons',
+    benefits: [
+      'Dragon transformation mode',
+      'Breathe fire attacks',
+      'Dragon scale armor',
+      'Wing flight abilities',
+      'Imperial throne room'
+    ]
+  },
+  {
+    id: 'divine_champion',
+    name: 'Divine Champion Pass',
+    price: 2500000,
+    duration: 90, // days
+    icon: '😇',
+    color: 'bg-gradient-to-br from-yellow-300 via-white to-cyan-300',
+    description: 'Blessed by the gods with divine powers',
+    benefits: [
+      'Divine blessing effects',
+      'Angelic wings and halo',
+      'Resurrection abilities',
+      'Holy light attacks',
+      'Celestial combat arena'
+    ]
+  },
+  {
+    id: 'reality_bender',
+    name: 'Reality Bender Pass',
+    price: 5000000,
+    duration: 120, // days
+    icon: '🌈',
+    color: 'bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500',
+    description: 'Reshape reality according to your will',
+    benefits: [
+      'Reality manipulation powers',
+      'Custom game rule creation',
+      'Dimension portal access',
+      'Rainbow reality effects',
+      'Multiverse combat zones'
+    ]
+  },
+  {
+    id: 'omnipotent_god',
+    name: 'Omnipotent God Pass',
+    price: 25000000,
+    duration: 365, // days
+    icon: '🌟',
+    color: 'bg-gradient-to-br from-yellow-200 via-white to-yellow-200',
+    description: 'Achieve ultimate power - become a god',
+    benefits: [
+      'Godmode - unlimited everything',
+      'Create and destroy at will',
+      'Omnipotent abilities',
+      'Divine aura effects',
+      'God-tier UI transformation'
+    ]
+  }
+]
+
 // Coin Packages for Purchase
 const COIN_PACKAGES = [
   {
@@ -310,6 +474,7 @@ function App() {
   const [selectedBenefitCategory, setSelectedBenefitCategory] = useState('All')
   const [hasUnlimitedCoins, setHasUnlimitedCoins] = useState(false)
   const [unlimitedCoinsExpiry, setUnlimitedCoinsExpiry] = useState<Date | null>(null)
+  const [activePasses, setActivePasses] = useState<{[key: string]: {expiry: Date, pass: typeof GAME_PASSES[0]}}>({})
 
   // Update player health when character changes
   useEffect(() => {
@@ -365,6 +530,47 @@ function App() {
     } else {
       toast.error(`Not enough coins! Need ${UNLIMITED_COINS_PASS.price.toLocaleString()} coins`)
     }
+  }
+
+  const buyGamePass = (pass: typeof GAME_PASSES[0]) => {
+    if (hasUnlimitedCoins || coins >= pass.price) {
+      // Only deduct coins if not unlimited
+      if (!hasUnlimitedCoins) {
+        setCoins(coins - pass.price)
+      }
+      
+      const expiryDate = new Date()
+      expiryDate.setDate(expiryDate.getDate() + pass.duration)
+      
+      setActivePasses(prev => ({
+        ...prev,
+        [pass.id]: {
+          expiry: expiryDate,
+          pass: pass
+        }
+      }))
+      
+      toast.success(`${pass.icon} ${pass.name} activated! Enjoy your new powers!`)
+    } else {
+      toast.error(`Not enough coins! Need ${pass.price.toLocaleString()} coins`)
+    }
+  }
+
+  const getPassTimeLeft = (passId: string) => {
+    const passData = activePasses[passId]
+    if (!passData) return ''
+    const now = new Date()
+    const diff = passData.expiry.getTime() - now.getTime()
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    return days > 0 ? `${days} days remaining` : `${hours} hours remaining`
+  }
+
+  const isPassActive = (passId: string) => {
+    const passData = activePasses[passId]
+    if (!passData) return false
+    const now = new Date()
+    return passData.expiry.getTime() > now.getTime()
   }
 
   const buyCoinPackage = (coinPackage: typeof COIN_PACKAGES[0]) => {
@@ -489,6 +695,11 @@ function App() {
           {hasVIP && !hasUnlimitedCoins && (
             <Badge className="mt-2 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold">
               ⭐ VIP MEMBER - {getVIPTimeLeft()}
+            </Badge>
+          )}
+          {Object.keys(activePasses).filter(id => isPassActive(id)).length > 0 && (
+            <Badge className="mt-2 bg-gradient-to-r from-purple-400 to-purple-600 text-white font-bold">
+              🎮 {Object.keys(activePasses).filter(id => isPassActive(id)).length} ACTIVE PASSES
             </Badge>
           )}
         </motion.div>
@@ -1050,6 +1261,98 @@ function App() {
                 </Card>
               </motion.div>
             )}
+            
+            {/* Game Passes Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6"
+            >
+              <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold text-white mb-2">🎮 POWER PASSES</h2>
+                <p className="text-gray-300">Unlock incredible abilities and transform your gameplay</p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {GAME_PASSES.map((pass, index) => {
+                  const isActive = isPassActive(pass.id)
+                  return (
+                    <motion.div
+                      key={pass.id}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="relative overflow-hidden"
+                    >
+                      {isActive && (
+                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                          <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold px-3 py-1 animate-pulse">
+                            ✨ ACTIVE
+                          </Badge>
+                        </div>
+                      )}
+                      
+                      <Card className={`${pass.color} border-0 shadow-xl relative`}>
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent"></div>
+                        <CardHeader className="relative z-10 text-center pb-4">
+                          <div className="text-5xl mb-3">{pass.icon}</div>
+                          <CardTitle className="text-xl font-bold text-white mb-2">
+                            {pass.name}
+                          </CardTitle>
+                          <p className="text-sm text-gray-100 opacity-90">
+                            {pass.description}
+                          </p>
+                        </CardHeader>
+                        
+                        <CardContent className="relative z-10">
+                          <div className="bg-black/20 rounded-lg p-4 mb-4">
+                            <div className="text-2xl font-bold text-white text-center mb-2">
+                              {hasUnlimitedCoins ? 'FREE' : `${pass.price.toLocaleString()} coins`}
+                            </div>
+                            <div className="text-center text-gray-200 text-sm">
+                              {pass.duration} days of power
+                            </div>
+                            {isActive && (
+                              <div className="text-center text-green-200 text-sm mt-2 font-semibold">
+                                {getPassTimeLeft(pass.id)}
+                              </div>
+                            )}
+                          </div>
+                          
+                          <div className="space-y-2 mb-4">
+                            {pass.benefits.map((benefit, benefitIndex) => (
+                              <div key={benefitIndex} className="flex items-center space-x-2">
+                                <Check className="w-4 h-4 text-green-300" />
+                                <p className="text-white text-sm">{benefit}</p>
+                              </div>
+                            ))}
+                          </div>
+
+                          {!isActive ? (
+                            <Button 
+                              onClick={() => buyGamePass(pass)}
+                              className="w-full bg-white text-black hover:bg-gray-100 font-bold py-3 transform hover:scale-105 transition-all duration-200"
+                            >
+                              <Zap className="w-5 h-5 mr-2" />
+                              ACTIVATE PASS
+                            </Button>
+                          ) : (
+                            <Button 
+                              disabled
+                              className="w-full bg-green-600 text-white font-bold py-3 cursor-not-allowed"
+                            >
+                              <Crown className="w-5 h-5 mr-2" />
+                              ACTIVE
+                            </Button>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </motion.div>
             
             {!hasVIP && !hasUnlimitedCoins ? (
               /* VIP Purchase Card */
