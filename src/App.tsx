@@ -144,6 +144,22 @@ const VIP_BENEFITS = [
 const VIP_PRICE = 1200000
 const VIP_DURATION = 30 // days
 
+// Unlimited Coins Pass
+const UNLIMITED_COINS_PASS = {
+  name: 'Unlimited Coins Pass',
+  price: 10999999,
+  duration: 365, // days
+  description: 'Never run out of coins again! Get unlimited coins for 1 year.',
+  benefits: [
+    'Unlimited coins for 365 days',
+    'No more grinding for coins',
+    'Instant access to all items',
+    'VIP status automatically included',
+    'Exclusive "Infinite Wealth" badge',
+    'Priority customer support'
+  ]
+}
+
 // Coin Packages for Purchase
 const COIN_PACKAGES = [
   {
@@ -229,6 +245,19 @@ const GLOVES = [
   { id: 6, name: 'Dragon Claws', price: 2500, damage: 75, rarity: 'epic', color: 'bg-red-500' },
   { id: 7, name: 'Thunderstorm', price: 5000, damage: 100, rarity: 'legendary', color: 'bg-indigo-500' },
   { id: 8, name: 'Cosmic Crusher', price: 10000, damage: 150, rarity: 'legendary', color: 'bg-pink-500' },
+  // Mythical Items - Super Rare & Expensive
+  { id: 9, name: 'Void Destroyer', price: 500000, damage: 500, rarity: 'mythical', color: 'bg-gradient-to-r from-black to-purple-900', stock: 2500 },
+  { id: 10, name: 'Celestial Gauntlets', price: 750000, damage: 750, rarity: 'mythical', color: 'bg-gradient-to-r from-cyan-400 to-blue-600', stock: 2500 },
+  { id: 11, name: 'Phoenix Flames', price: 1000000, damage: 1000, rarity: 'mythical', color: 'bg-gradient-to-r from-orange-500 to-red-600', stock: 2500 },
+  { id: 12, name: 'Divine Annihilator', price: 1500000, damage: 1500, rarity: 'mythical', color: 'bg-gradient-to-r from-yellow-400 to-orange-500', stock: 2500 },
+  { id: 13, name: 'Quantum Fists', price: 2000000, damage: 2000, rarity: 'mythical', color: 'bg-gradient-to-r from-purple-600 to-pink-600', stock: 2500 },
+  { id: 14, name: 'Reality Shatterer', price: 3000000, damage: 3000, rarity: 'mythical', color: 'bg-gradient-to-r from-indigo-600 to-purple-700', stock: 2500 },
+  // Ultra Rare Items - Extremely Expensive
+  { id: 15, name: 'Infinity Gauntlets', price: 25000000, damage: 10000, rarity: 'ultra', color: 'bg-gradient-to-r from-yellow-300 via-yellow-500 to-orange-500', stock: 100 },
+  { id: 16, name: 'God Slayer Fists', price: 50000000, damage: 25000, rarity: 'ultra', color: 'bg-gradient-to-r from-red-600 via-red-700 to-black', stock: 50 },
+  { id: 17, name: 'Universe Breaker', price: 100000000, damage: 50000, rarity: 'ultra', color: 'bg-gradient-to-r from-purple-800 via-indigo-900 to-black', stock: 25 },
+  { id: 18, name: 'Omnipotent Hands', price: 500000000, damage: 100000, rarity: 'ultra', color: 'bg-gradient-to-r from-white via-cyan-200 to-blue-300', stock: 10 },
+  { id: 19, name: 'Creation Fists', price: 1000000000, damage: 1000000, rarity: 'ultra', color: 'bg-gradient-to-r from-yellow-200 via-white to-yellow-200', stock: 5 },
 ]
 
 const CHARACTERS = [
@@ -240,13 +269,28 @@ const CHARACTERS = [
   { id: 6, name: 'Titan', price: 4000, health: 300, icon: '🛡️', rarity: 'epic' },
   { id: 7, name: 'Godlike', price: 8000, health: 400, icon: '👑', rarity: 'legendary' },
   { id: 8, name: 'Mythic Beast', price: 15000, health: 500, icon: '🐉', rarity: 'legendary' },
+  // Mythical Characters - Ultra Rare & Expensive
+  { id: 9, name: 'Shadow Assassin', price: 800000, health: 2000, icon: '🥷', rarity: 'mythical', stock: 2500 },
+  { id: 10, name: 'Cosmic Warrior', price: 1200000, health: 3000, icon: '🌌', rarity: 'mythical', stock: 2500 },
+  { id: 11, name: 'Phoenix Emperor', price: 1600000, health: 4000, icon: '🔥', rarity: 'mythical', stock: 2500 },
+  { id: 12, name: 'Divine Champion', price: 2400000, health: 5000, icon: '😇', rarity: 'mythical', stock: 2500 },
+  { id: 13, name: 'Void Master', price: 3200000, health: 6000, icon: '🌑', rarity: 'mythical', stock: 2500 },
+  { id: 14, name: 'Reality Bender', price: 5000000, health: 8000, icon: '🌈', rarity: 'mythical', stock: 2500 },
+  // Ultra Rare Characters - Extremely Expensive
+  { id: 15, name: 'Infinity Warrior', price: 30000000, health: 50000, icon: '♾️', rarity: 'ultra', stock: 100 },
+  { id: 16, name: 'God Emperor', price: 75000000, health: 100000, icon: '🕴️', rarity: 'ultra', stock: 50 },
+  { id: 17, name: 'Universe Guardian', price: 150000000, health: 250000, icon: '🌟', rarity: 'ultra', stock: 25 },
+  { id: 18, name: 'Omnipotent Being', price: 400000000, health: 500000, icon: '👁️', rarity: 'ultra', stock: 10 },
+  { id: 19, name: 'The Creator', price: 1000000000, health: 1000000, icon: '🌍', rarity: 'ultra', stock: 5 },
 ]
 
 const RARITY_COLORS = {
   common: 'border-gray-400 bg-gray-50',
   rare: 'border-blue-400 bg-blue-50',
   epic: 'border-purple-400 bg-purple-50',
-  legendary: 'border-yellow-400 bg-yellow-50 shadow-yellow-200 shadow-lg'
+  legendary: 'border-yellow-400 bg-yellow-50 shadow-yellow-200 shadow-lg',
+  mythical: 'border-gradient-to-r from-purple-500 to-pink-500 bg-gradient-to-r from-purple-100 to-pink-100 shadow-purple-300 shadow-xl',
+  ultra: 'border-gradient-to-r from-yellow-400 to-orange-500 bg-gradient-to-r from-yellow-50 to-orange-50 shadow-yellow-400 shadow-2xl animate-pulse'
 }
 
 function App() {
@@ -264,6 +308,8 @@ function App() {
   const [hasVIP, setHasVIP] = useState(false)
   const [vipExpiry, setVipExpiry] = useState<Date | null>(null)
   const [selectedBenefitCategory, setSelectedBenefitCategory] = useState('All')
+  const [hasUnlimitedCoins, setHasUnlimitedCoins] = useState(false)
+  const [unlimitedCoinsExpiry, setUnlimitedCoinsExpiry] = useState<Date | null>(null)
 
   // Update player health when character changes
   useEffect(() => {
@@ -272,8 +318,11 @@ function App() {
   }, [selectedCharacter])
 
   const buyItem = (item: typeof GLOVES[0] | typeof CHARACTERS[0], type: 'glove' | 'character') => {
-    if (coins >= item.price) {
-      setCoins(coins - item.price)
+    if (hasUnlimitedCoins || coins >= item.price) {
+      // Only deduct coins if not unlimited
+      if (!hasUnlimitedCoins) {
+        setCoins(coins - item.price)
+      }
       if (type === 'glove') {
         setOwnedGloves([...ownedGloves, item])
       } else {
@@ -298,6 +347,26 @@ function App() {
     }
   }
 
+  const buyUnlimitedCoins = () => {
+    if (coins >= UNLIMITED_COINS_PASS.price) {
+      setCoins(coins - UNLIMITED_COINS_PASS.price)
+      setHasUnlimitedCoins(true)
+      const expiryDate = new Date()
+      expiryDate.setDate(expiryDate.getDate() + UNLIMITED_COINS_PASS.duration)
+      setUnlimitedCoinsExpiry(expiryDate)
+      
+      // Auto-activate VIP as well
+      setHasVIP(true)
+      const vipExpiry = new Date()
+      vipExpiry.setDate(vipExpiry.getDate() + UNLIMITED_COINS_PASS.duration)
+      setVipExpiry(vipExpiry)
+      
+      toast.success('💰 UNLIMITED COINS ACTIVATED! You are now infinitely wealthy!')
+    } else {
+      toast.error(`Not enough coins! Need ${UNLIMITED_COINS_PASS.price.toLocaleString()} coins`)
+    }
+  }
+
   const buyCoinPackage = (coinPackage: typeof COIN_PACKAGES[0]) => {
     // In a real app, this would integrate with payment processing
     // For demo purposes, we'll simulate the purchase
@@ -311,6 +380,14 @@ function App() {
     if (!vipExpiry) return ''
     const now = new Date()
     const diff = vipExpiry.getTime() - now.getTime()
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    return `${days} days remaining`
+  }
+
+  const getUnlimitedCoinsTimeLeft = () => {
+    if (!unlimitedCoinsExpiry) return ''
+    const now = new Date()
+    const diff = unlimitedCoinsExpiry.getTime() - now.getTime()
     const days = Math.floor(diff / (1000 * 60 * 60 * 24))
     return `${days} days remaining`
   }
@@ -385,6 +462,8 @@ function App() {
       case 'rare': return <Star className="w-4 h-4 text-blue-500" />
       case 'epic': return <Star className="w-4 h-4 text-purple-500" />
       case 'legendary': return <Star className="w-4 h-4 text-yellow-500" />
+      case 'mythical': return <Gem className="w-4 h-4 text-purple-600" />
+      case 'ultra': return <Crown className="w-4 h-4 text-yellow-600 animate-pulse" />
       default: return <Star className="w-4 h-4" />
     }
   }
@@ -402,7 +481,12 @@ function App() {
             Boxing Champion
           </h1>
           <p className="text-xl text-gray-300">Coin Collector Game</p>
-          {hasVIP && (
+          {hasUnlimitedCoins && (
+            <Badge className="mt-2 bg-gradient-to-r from-green-400 to-green-600 text-black font-bold animate-pulse">
+              💰 UNLIMITED COINS - {getUnlimitedCoinsTimeLeft()}
+            </Badge>
+          )}
+          {hasVIP && !hasUnlimitedCoins && (
             <Badge className="mt-2 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold">
               ⭐ VIP MEMBER - {getVIPTimeLeft()}
             </Badge>
@@ -415,13 +499,17 @@ function App() {
           animate={{ opacity: 1, scale: 1 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
         >
-          <Card className="bg-gradient-to-r from-yellow-500 to-yellow-600 border-0">
+          <Card className={`${hasUnlimitedCoins ? 'bg-gradient-to-r from-green-500 to-green-600 animate-pulse' : 'bg-gradient-to-r from-yellow-500 to-yellow-600'} border-0`}>
             <CardContent className="p-4 text-center">
               <div className="flex items-center justify-center mb-2">
                 <Coins className="w-6 h-6 text-white mr-2" />
-                <span className="text-2xl font-bold text-white">{coins.toLocaleString()}</span>
+                <span className="text-2xl font-bold text-white">
+                  {hasUnlimitedCoins ? '∞' : coins.toLocaleString()}
+                </span>
               </div>
-              <p className="text-yellow-100 text-sm">Coins</p>
+              <p className="text-yellow-100 text-sm">
+                {hasUnlimitedCoins ? 'Unlimited Coins' : 'Coins'}
+              </p>
             </CardContent>
           </Card>
           
@@ -606,17 +694,26 @@ function App() {
                                 </div>
                               </div>
                             </div>
-                            {owned ? (
-                              <Badge variant="secondary">Owned</Badge>
-                            ) : (
-                              <Button 
-                                size="sm" 
-                                onClick={() => buyItem(glove, 'glove')}
-                                className="bg-green-600 hover:bg-green-700"
-                              >
-                                {glove.price} coins
-                              </Button>
-                            )}
+                            <div className="flex flex-col items-end space-y-2">
+                              {owned ? (
+                                <Badge variant="secondary">Owned</Badge>
+                              ) : (
+                                <>
+                                  <Button 
+                                    size="sm" 
+                                    onClick={() => buyItem(glove, 'glove')}
+                                    className={`${hasUnlimitedCoins ? 'bg-green-600 hover:bg-green-700' : 'bg-green-600 hover:bg-green-700'}`}
+                                  >
+                                    {hasUnlimitedCoins ? 'FREE' : `${glove.price.toLocaleString()} coins`}
+                                  </Button>
+                                  {glove.stock !== undefined && (
+                                    <div className="text-xs text-gray-500">
+                                      Stock: {glove.stock}
+                                    </div>
+                                  )}
+                                </>
+                              )}
+                            </div>
                           </div>
                         </motion.div>
                       )
@@ -656,17 +753,26 @@ function App() {
                                 </div>
                               </div>
                             </div>
-                            {owned ? (
-                              <Badge variant="secondary">Owned</Badge>
-                            ) : (
-                              <Button 
-                                size="sm" 
-                                onClick={() => buyItem(character, 'character')}
-                                className="bg-green-600 hover:bg-green-700"
-                              >
-                                {character.price} coins
-                              </Button>
-                            )}
+                            <div className="flex flex-col items-end space-y-2">
+                              {owned ? (
+                                <Badge variant="secondary">Owned</Badge>
+                              ) : (
+                                <>
+                                  <Button 
+                                    size="sm" 
+                                    onClick={() => buyItem(character, 'character')}
+                                    className={`${hasUnlimitedCoins ? 'bg-green-600 hover:bg-green-700' : 'bg-green-600 hover:bg-green-700'}`}
+                                  >
+                                    {hasUnlimitedCoins ? 'FREE' : `${character.price.toLocaleString()} coins`}
+                                  </Button>
+                                  {character.stock !== undefined && (
+                                    <div className="text-xs text-gray-500">
+                                      Stock: {character.stock}
+                                    </div>
+                                  )}
+                                </>
+                              )}
+                            </div>
                           </div>
                         </motion.div>
                       )
@@ -879,7 +985,73 @@ function App() {
 
           {/* VIP Tab */}
           <TabsContent value="vip" className="space-y-6">
-            {!hasVIP ? (
+            {/* Unlimited Coins Pass */}
+            {!hasUnlimitedCoins && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative overflow-hidden mb-6"
+              >
+                <Card className="bg-gradient-to-br from-green-500 via-green-600 to-emerald-600 border-0 shadow-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-400/20 animate-pulse"></div>
+                  <CardHeader className="relative z-10 text-center pb-4">
+                    <motion.div
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-green-200 to-green-400 rounded-full flex items-center justify-center shadow-xl"
+                    >
+                      <DollarSign className="w-12 h-12 text-green-800" />
+                    </motion.div>
+                    <CardTitle className="text-4xl font-bold text-black mb-2">
+                      💰 UNLIMITED COINS PASS 💰
+                    </CardTitle>
+                    <p className="text-xl text-green-900 font-semibold">
+                      Never Run Out of Coins Again!
+                    </p>
+                    <p className="text-green-800 mt-2">
+                      Get infinite wealth for 365 days + VIP included
+                    </p>
+                  </CardHeader>
+                  
+                  <CardContent className="relative z-10 text-center">
+                    <div className="bg-black/20 rounded-lg p-6 mb-6">
+                      <div className="text-3xl font-bold text-white mb-2">
+                        {UNLIMITED_COINS_PASS.price.toLocaleString()} Coins
+                      </div>
+                      <div className="text-green-100">
+                        365 Days of Infinite Wealth
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-4 mb-6 text-left">
+                      {UNLIMITED_COINS_PASS.benefits.map((benefit, index) => (
+                        <div key={index} className="bg-black/20 rounded-lg p-4">
+                          <div className="flex items-center space-x-3">
+                            <Check className="w-5 h-5 text-green-200" />
+                            <p className="text-green-100 text-sm font-medium">{benefit}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Button 
+                      onClick={buyUnlimitedCoins}
+                      size="lg"
+                      className="bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 text-white font-bold text-xl px-8 py-4 shadow-xl transform hover:scale-105 transition-all duration-200 mb-4"
+                    >
+                      <Wallet className="w-6 h-6 mr-2" />
+                      GET UNLIMITED COINS
+                    </Button>
+                    
+                    <p className="text-green-800 text-sm">
+                      ⚡ Instant activation • 💰 Unlimited coins • 🎆 365-day access • ⭐ VIP included
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+            
+            {!hasVIP && !hasUnlimitedCoins ? (
               /* VIP Purchase Card */
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
